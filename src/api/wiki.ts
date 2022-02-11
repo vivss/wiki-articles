@@ -1,19 +1,28 @@
 import axios from 'axios';
-import { IArticleItem } from '../interfaces';
-
-interface IWikiData {
-  items: {
-    articles: IArticleItem[];
-  };
-}
 
 const baseUrl =
   'https://wikimedia.org/api/rest_v1/metrics/pageviews/top/en.wikipedia/all-access';
 
-export default {
+  // could just use moment.js if it was worth pulling in the package
+function formatDate(date: Date) {
+  let month = '' + (date.getMonth() + 1);
+  let day = '' + date.getDate();
+  const year = date.getFullYear();
+
+  if (month.length < 2) {
+    month = '0' + month;
+  }
+  if (day.length < 2) {
+    day = '0' + day;
+  }
+
+  return [year, month, day].join('/');
+}
+
+const wikiApi = {
   get(startDate: Date) {
-    const formattedDate = startDate.toLocaleDateString('en-ZA');
-    console.log(formattedDate);
-    return axios.get(`${baseUrl}/${formattedDate}`);
+    return axios.get(`${baseUrl}/${formatDate(startDate)}`);
   },
 };
+
+export default wikiApi;

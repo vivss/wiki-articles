@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import WikiArticlesContainer from './components/WikiArticlesContainer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 

@@ -4,12 +4,15 @@ import { IArticleItem } from '../interfaces';
 import ArticleItem from './ArticleItem';
 interface Props {
   articleItems: IArticleItem[];
+  numResults: number;
 }
 
-const ArticleItemList = ({ articleItems }: Props) => {
+const ArticleItemList = ({ articleItems, numResults }: Props) => {
+  const articlesToShow = articleItems.slice(0, numResults);
+
   return (
     <Container>
-      {articleItems.map((articleItem) => {
+      {articlesToShow.map((articleItem) => {
         return (
           <ArticleItem key={articleItem.article} articleItem={articleItem} />
         );
