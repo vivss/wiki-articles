@@ -3,9 +3,7 @@ export interface IArticleItem {
   views: number;
   rank: number;
 }
-export interface IFilters {
-  numResults: number;
-  date: Date;
-}
 
-export type ISetFilters = (filters: IFilters) => void;
+export type setDate = (date: Date) => void;
+export type setNumResults = (numResults: number) => void;
+export type setCountry = (country: string) => void;

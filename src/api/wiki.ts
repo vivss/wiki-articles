@@ -1,9 +1,7 @@
 import axios from 'axios';
+import { CountryCodes } from '../constants/country-code';
 
-const baseUrl =
-  'https://wikimedia.org/api/rest_v1/metrics/pageviews/top/en.wikipedia/all-access';
-
-  // could just use moment.js if it was worth pulling in the package
+// could just use moment.js if it was worth pulling in the package
 function formatDate(date: Date) {
   let month = '' + (date.getMonth() + 1);
   let day = '' + date.getDate();
@@ -19,9 +17,22 @@ function formatDate(date: Date) {
   return [year, month, day].join('/');
 }
 
+const baseUrl = 'https://wikimedia.org/api/rest_v1/metrics/pageviews';
+const allTopArticlesPath = 'top/en.wikipedia/all-access';
+const topArticlesByCountryPath = 'top-per-country';
+
 const wikiApi = {
-  get(startDate: Date) {
-    return axios.get(`${baseUrl}/${formatDate(startDate)}`);
+  getAllTopArticles(startDate: Date) {
+    return axios.get(
+      `${baseUrl}/${allTopArticlesPath}/${formatDate(startDate)}`
+    );
+  },
+  getTopArticlesByCountry(startDate: Date, country: string) {
+    return axios.get(
+      `${baseUrl}/${topArticlesByCountryPath}/${
+        CountryCodes[country]
+      }/all-access/${formatDate(startDate)}`
+    );
   },
 };
 

@@ -11,7 +11,7 @@ const ArticleItemList = ({ articleItems, numResults }: Props) => {
   const articlesToShow = articleItems.slice(0, numResults);
 
   return (
-    <Container>
+    <Container className="w-25">
       {articlesToShow.map((articleItem) => {
         return (
           <ArticleItem key={articleItem.article} articleItem={articleItem} />

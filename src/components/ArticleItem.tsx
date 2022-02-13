@@ -14,12 +14,10 @@ const ArticleItem = ({ articleItem }: Props) => {
       <Card.Body>
         <Row>
           <Col className="fw-bold my-auto" xs={8}>
-              {articleName}
+            {articleName}
           </Col>
-          <Col>
-              {`Views: ${articleItem.rank}`}
-          </Col>
-          </Row>
+          <Col>{`Views: ${articleItem.rank}`}</Col>
+        </Row>
       </Card.Body>
     </Card>
   );
